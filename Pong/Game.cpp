@@ -5,14 +5,14 @@ Game::Game() : left_paddle(nullptr), right_paddle(nullptr), ball(nullptr), wall(
 
 }
 
-//Game::~Game()
-//{
-//	delete left_paddle;
-//	delete right_paddle;
-//	delete ball;
-//	delete wall;
-//	delete score;
-//}
+Game::~Game()
+{
+	delete left_paddle;
+	delete right_paddle;
+	delete ball;
+	delete wall;
+	delete score;
+}
 
 void Game::StartGame()
 {
@@ -79,11 +79,6 @@ void Game::GameLoop(sf::RenderWindow& window)
 		
 		window.display();
 	}
-	delete left_paddle;
-	delete right_paddle;
-	delete ball;
-	delete wall;
-	delete score;
 }
 
 void Game::ExitGame(sf::RenderWindow& window)
