@@ -14,7 +14,6 @@ sf::RectangleShape& Paddle::GetPaddle()
 
 void Paddle::InputHandling(float& speed, sf::Keyboard::Key const& Up, sf::Keyboard::Key const& Down)
 {
-	//Left Paddle Movement
 	if (sf::Keyboard::isKeyPressed(Up))
 	{
 		paddle_velocity.y = -4.f * speed;
