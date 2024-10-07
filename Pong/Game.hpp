@@ -18,10 +18,18 @@ private:
 	Score* score;
 
 public:
+	/// \brief Constructor. 
 	Game();
+
+	/// \brief Destructor. 
 	~Game();
 
+	/// \brief Creates all objects for the game to function.
 	void StartGame();
+
+	/// \brief Main game loop, keeps the game alive. 
 	void GameLoop(sf::RenderWindow& window);
+
+	/// \brief Closes the game.
 	void ExitGame(sf::RenderWindow& window);
 };
