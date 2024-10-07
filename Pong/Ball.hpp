@@ -3,6 +3,7 @@
 #include "BaseGameClass.hpp"
 #include "Score.hpp"
 #include "Paddle.hpp"
+#include "Sound.hpp"
 
 class Paddle;
 
@@ -14,13 +15,15 @@ private:
 	Score* score;
 	Paddle* left_paddle;
 	Paddle* right_paddle;
+	Sound* sound;
 
 public:
 	/// \brief Constructor.
 	/// \param scoreRef Type pointer. It points to Score object. 
 	/// \param left_paddleRef Type pointer. It points to Paddle object.
 	/// \param right_paddleRef Type pointer. It points to Paddle object.
-	Ball(Score* scoreRef, Paddle* left_paddleRef, Paddle* right_paddleRef);
+	/// \param soundRef Type pointer. It points to Sound object.
+	Ball(Score* scoreRef, Paddle* left_paddleRef, Paddle* right_paddleRef, Sound* soundRef);
 
 	/// \brief Returns Ball address.
 	/// \return Address of ball.

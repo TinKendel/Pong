@@ -6,6 +6,7 @@
 #include "Ball.hpp"
 #include "Wall.hpp"
 #include "Score.hpp"
+#include "Sound.hpp"
 
 
 class Game
@@ -16,6 +17,7 @@ private:
 	Ball* ball;
 	Wall* wall;
 	Score* score;
+	Sound* sound;
 
 public:
 	/// \brief Constructor. 

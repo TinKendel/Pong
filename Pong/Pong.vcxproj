@@ -138,6 +138,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Paddle.hpp" />
     <ClInclude Include="Score.hpp" />
+    <ClInclude Include="Sound.hpp" />
     <ClInclude Include="Wall.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
