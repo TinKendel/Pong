@@ -1,13 +1,14 @@
 #include "Game.hpp"
 
-Game::Game() : paddle(nullptr), ball(nullptr), wall(nullptr), score(nullptr)
+Game::Game() : left_paddle(nullptr), right_paddle(nullptr), ball(nullptr), wall(nullptr), score(nullptr)
 {
 
 }
 
 Game::~Game()
 {
-	delete paddle;
+	delete left_paddle;
+	delete right_paddle;
 	delete ball;
 	delete wall;
 	delete score;
@@ -20,8 +21,11 @@ void Game::StartGame()
 	//Create Wall
 	wall = new Wall();
 
+	float left = 10.f;
+	float right = 838.f;
 	//Create Paddles
-	paddle = new Paddle();
+	left_paddle = new Paddle(left);
+	right_paddle = new Paddle(right);
 
 	//Create Score
 	score = new Score();
@@ -29,7 +33,7 @@ void Game::StartGame()
 	score->SetScore();
 
 	//Create Ball
-	ball = new Ball(score, paddle);
+	ball = new Ball(score, left_paddle, right_paddle);
 	ball->SetBall();
 
 	//Setting Frames
@@ -59,13 +63,16 @@ void Game::GameLoop(sf::RenderWindow& window)
 		float frame_rate = delta_time * 60.f;
 		
 		ball->UpdateMovement(frame_rate);
-		paddle->InputHandling(frame_rate);
-		paddle->CollisionDetection();
+		left_paddle->InputHandling(frame_rate, sf::Keyboard::W, sf::Keyboard::S);
+		right_paddle->InputHandling(frame_rate, sf::Keyboard::Up, sf::Keyboard::Down);
+		left_paddle->CollisionDetection();
+		right_paddle->CollisionDetection();
 
 		window.clear();
 
 		//Drawing all the elements
-		paddle->Drawing(window);
+		left_paddle->Drawing(window);
+		right_paddle->Drawing(window);
 		ball->Drawing(window);
 		wall->Drawing(window);
 		score->Drawing(window);
