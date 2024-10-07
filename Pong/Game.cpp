@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game() : left_paddle(nullptr), right_paddle(nullptr), ball(nullptr), wall(nullptr), score(nullptr)
+Game::Game() : left_paddle(nullptr), right_paddle(nullptr), ball(nullptr), wall(nullptr), score(nullptr), sound(nullptr)
 {
 
 }
@@ -12,6 +12,7 @@ Game::~Game()
 	delete ball;
 	delete wall;
 	delete score;
+	delete sound;
 }
 
 void Game::StartGame()
@@ -32,8 +33,11 @@ void Game::StartGame()
 	score->LoadFont();
 	score->SetScore();
 
+	//Create Sound
+	sound = new Sound();
+
 	//Create Ball
-	ball = new Ball(score, left_paddle, right_paddle);
+	ball = new Ball(score, left_paddle, right_paddle, sound);
 	ball->SetBall();
 
 	//Setting Frames
@@ -79,6 +83,7 @@ void Game::GameLoop(sf::RenderWindow& window)
 		
 		window.display();
 	}
+
 }
 
 void Game::ExitGame(sf::RenderWindow& window)

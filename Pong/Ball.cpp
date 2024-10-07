@@ -1,6 +1,7 @@
 #include "Ball.hpp"
 
-Ball::Ball(Score* scoreRef, Paddle* left_paddleRef, Paddle* right_paddleRef) : score(scoreRef), left_paddle(left_paddleRef), right_paddle(right_paddleRef)
+Ball::Ball(Score* scoreRef, Paddle* left_paddleRef, Paddle* right_paddleRef, Sound* soundRef) : 
+	score(scoreRef), left_paddle(left_paddleRef), right_paddle(right_paddleRef), sound(soundRef)
 {
 
 }
@@ -56,8 +57,10 @@ void Ball::Drawing(sf::RenderWindow& window)
 void Ball::CollisionDetection()
 {
 	// Check collision with the top and bottom of the screen
-	if (ball.getPosition().y < 0.f || ball.getPosition().y + ball.getRadius() * 2.f > 525.f) {
+	if (ball.getPosition().y < 0.f || ball.getPosition().y + ball.getRadius() * 2.f > 525.f) 
+	{
 		ball_velocity.y *= -1;
+		sound->PlayBounceSound();
 	}
 
 	sf::FloatRect ballBounds = ball.getGlobalBounds();
@@ -77,6 +80,7 @@ void Ball::CollisionDetection()
 		ball_velocity.y += distanceFromCenter * 0.05f;
 		ball_velocity.x *= -1;
 		ball_velocity = sf::Vector2f(ball_velocity.x * 1.2f, ball_velocity.y * 1.2f);
+		sound->PlayBounceSound();
 	}
 
 	// Right paddle collision
@@ -90,18 +94,21 @@ void Ball::CollisionDetection()
 		ball_velocity.y += distanceFromCenter * 0.05f;
 		ball_velocity.x *= -1; 
 		ball_velocity = sf::Vector2f(ball_velocity.x * 1.2f, ball_velocity.y * 1.2f);
+		sound->PlayBounceSound();
 	}
 
 	// Check collision with left or right walls
 	if (ball.getPosition().x <= -2.5f)
 	{
 		score->UpdateRightScore();
+		sound->PlayScoreSound();
 		SwitchServe(true);
 	}
 
 	if (ball.getPosition().x >= 858.f)
 	{
 		score->UpdateLeftScore();
+		sound->PlayScoreSound();
 		SwitchServe(false);
 	}
 }
