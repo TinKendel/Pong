@@ -11,7 +11,8 @@
 class Game
 {
 private:
-	Paddle* paddle;
+	Paddle* left_paddle;
+	Paddle* right_paddle;
 	Ball* ball;
 	Wall* wall;
 	Score* score;
