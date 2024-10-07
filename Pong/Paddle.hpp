@@ -9,17 +9,10 @@ class Paddle : public BaseGame
 {
 private:
 	sf::RectangleShape paddle;
-	sf::RectangleShape left_paddle;
-	sf::RectangleShape right_paddle;
 	sf::Vector2f paddle_velocity;
-	sf::Vector2f left_paddle_velocity;
-	sf::Vector2f right_paddle_velocity;
 
 public:
 	Paddle(float& position);
-
-	sf::RectangleShape& GetLeftPaddle();
-	sf::RectangleShape& GetRightPaddle();
 
 	sf::RectangleShape& GetPaddle();
 
