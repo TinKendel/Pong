@@ -19,7 +19,7 @@ private:
 
 public:
 	Game();
-	~Game();
+	//~Game();
 
 	void StartGame();
 	void GameLoop(sf::RenderWindow& window);
