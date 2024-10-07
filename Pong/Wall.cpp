@@ -11,7 +11,7 @@ sf::RectangleShape& Wall::GetLine()
 	return line;
 }
 
-void Wall::InputHandling(float& speed)
+void Wall::InputHandling(float& speed, sf::Keyboard::Key const& Up, sf::Keyboard::Key const& Down)
 {
 	std::cout << "I dont need any inputs..." << std::endl;
 }

@@ -1,85 +1,50 @@
 #include "Paddle.hpp"
 
-Paddle::Paddle()
+Paddle::Paddle(float& position)
 {
-	left_paddle.setSize(sf::Vector2f(10.f, 100.f));
-	left_paddle.setFillColor(sf::Color::White);
-	left_paddle.setPosition(10.f, 212.5);
-
-	right_paddle.setSize(sf::Vector2f(10.f, 100.f));
-	right_paddle.setFillColor(sf::Color::White);
-	right_paddle.setPosition(838.f, 212.5);
+	paddle.setSize(sf::Vector2f(10.f, 100.f));
+	paddle.setFillColor(sf::Color::White);
+	paddle.setPosition(position, 212.5);
 }
 
-sf::RectangleShape& Paddle::GetLeftPaddle()
+sf::RectangleShape& Paddle::GetPaddle()
 {
-	return left_paddle;
+	return paddle;
 }
 
-sf::RectangleShape& Paddle::GetRightPaddle()
+void Paddle::InputHandling(float& speed, sf::Keyboard::Key const& Up, sf::Keyboard::Key const& Down)
 {
-	return right_paddle;
-}
-
-void Paddle::InputHandling(float& speed) 
-{
-	//Left Paddle Movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if (sf::Keyboard::isKeyPressed(Up))
 	{
-		left_paddle_velocity.y = -4.f * speed;
+		paddle_velocity.y = -4.f * speed;
 		PositionUpdate();
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (sf::Keyboard::isKeyPressed(Down))
 	{
-		left_paddle_velocity.y = 4.f * speed;
+		paddle_velocity.y = 4.f * speed;
 		PositionUpdate();
-	}
-
-	//Right Paddle Movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		right_paddle_velocity.y = -4.f * speed;
-		right_paddle.move(right_paddle_velocity.x, right_paddle_velocity.y);
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		right_paddle_velocity.y = 4.f * speed;
-		right_paddle.move(right_paddle_velocity.x, right_paddle_velocity.y);
 	}
 }
 
 void Paddle::PositionUpdate()
 {
-	left_paddle.move(left_paddle_velocity.x, left_paddle_velocity.y);
+	paddle.move(paddle_velocity.x, paddle_velocity.y);
 }
 
 void Paddle::Drawing(sf::RenderWindow& window)
 {
-	window.draw(left_paddle);
-	window.draw(right_paddle);
+	window.draw(paddle);
 }
 
 void Paddle::CollisionDetection()
 {
-	//Collision detection for the left paddle
-	if (left_paddle.getPosition().y < 0.f)
+	if (paddle.getPosition().y < 0.f)
 	{
-		left_paddle.setPosition(left_paddle.getPosition().x, 0.f);
+		paddle.setPosition(paddle.getPosition().x, 0.f);
 	}
-	if (left_paddle.getPosition().y > 425.f)
+	if (paddle.getPosition().y > 425.f)
 	{
-		left_paddle.setPosition(left_paddle.getPosition().x, 425.f);
-	}
-
-	//Collision detection for the right paddle
-	if (right_paddle.getPosition().y < 0.f)
-	{
-		right_paddle.setPosition(right_paddle.getPosition().x, 0.f);
-	}
-	if (right_paddle.getPosition().y > 425.f)
-	{
-		right_paddle.setPosition(right_paddle.getPosition().x, 425.f);
+		paddle.setPosition(paddle.getPosition().x, 425.f);
 	}
 }

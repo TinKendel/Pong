@@ -41,7 +41,7 @@ void Score::UpdateRightScore()
 	right_text.setString(std::to_string(right_score));
 }
 
-void Score::InputHandling(float& speed)
+void Score::InputHandling(float& speed, sf::Keyboard::Key const& Up, sf::Keyboard::Key const& Down)
 {
 	std::cout << "I dont need any inputs..." << std::endl;
 }

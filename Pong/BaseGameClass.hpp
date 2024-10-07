@@ -9,7 +9,7 @@ class BaseGame
 public:
 	virtual ~BaseGame() {}
 
-	virtual void InputHandling(float& speed) = 0;
+	virtual void InputHandling(float& speed, sf::Keyboard::Key const& Up, sf::Keyboard::Key const& Down) = 0;
 	virtual void PositionUpdate() = 0;
 	virtual void Drawing(sf::RenderWindow& window) = 0;
 	virtual void CollisionDetection() = 0;

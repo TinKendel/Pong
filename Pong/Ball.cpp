@@ -1,6 +1,6 @@
 #include "Ball.hpp"
 
-Ball::Ball(Score* scoreRef, Paddle* paddleRef) : score(scoreRef), paddle(paddleRef)
+Ball::Ball(Score* scoreRef, Paddle* left_paddleRef, Paddle* right_paddleRef) : score(scoreRef), left_paddle(left_paddleRef), right_paddle(right_paddleRef)
 {
 
 }
@@ -37,7 +37,7 @@ void Ball::UpdateMovement(float delta_time)
 	ball.move(ball_velocity.x * delta_time, ball_velocity.y * delta_time);
 }
 
-void Ball::InputHandling(float& speed)
+void Ball::InputHandling(float& speed, sf::Keyboard::Key const& Up, sf::Keyboard::Key const& Down)
 {
 	std::cout << "I dont need any input handling..." << std::endl;
 }
@@ -61,8 +61,8 @@ void Ball::CollisionDetection()
 	}
 
 	sf::FloatRect ballBounds = ball.getGlobalBounds();
-	sf::FloatRect leftPaddleBounds = paddle->GetLeftPaddle().getGlobalBounds();
-	sf::FloatRect rightPaddleBounds = paddle->GetRightPaddle().getGlobalBounds();
+	sf::FloatRect leftPaddleBounds = left_paddle->GetPaddle().getGlobalBounds();
+	sf::FloatRect rightPaddleBounds = right_paddle->GetPaddle().getGlobalBounds();
 
 	// Left paddle collision
 	if (ballBounds.intersects(leftPaddleBounds)) 
